@@ -1,21 +1,28 @@
-import Portfolio from './components/Portfolio';
-
-export const metadata = {
-  title: 'Prit Yagnik - iOS Engineer & ML Developer',
-  description: 'iOS apps that users love. 6 years shipping. 20+ apps. 98% crash-free. Now adding ML to the mix.',
-  openGraph: {
-    title: 'Prit Yagnik - iOS Engineer & ML Developer',
-    description: 'iOS apps that users love. 6 years shipping production apps.',
-    url: 'https://prityagnik.dev',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Prit Yagnik - iOS Engineer & ML Developer',
-    description: '6+ years iOS. 20+ apps shipped. 7.8K+ ratings. Now building with ML.',
-  },
-};
+import Hero from './components/Hero';
+import About from './components/About';
+import Apps from './components/Apps';
+import TechStack from './components/TechStack';
+import CodeShowcase from './components/CodeShowcase';
+import Testimonial from './components/Testimonial';
+import Contact from './components/Contact';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 export default function Home() {
-  return <Portfolio />;
+  return (
+    <main className="relative">
+      <div className="fixed inset-0 grid-bg pointer-events-none z-0" />
+      <div className="relative z-10">
+        <Navbar />
+        <Hero />
+        <About />
+        <Apps />
+        <CodeShowcase />
+        <TechStack />
+        <Testimonial />
+        <Contact />
+        <Footer />
+      </div>
+    </main>
+  );
 }

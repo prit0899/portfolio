@@ -2,23 +2,202 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root {
+  --neon-teal: #2dd4bf;
+  --neon-green: #00ff88;
+  --neon-purple: #a855f7;
+  --bg: #0a0e14;
+}
+
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
+  background-color: var(--bg);
 }
 
 body {
-  @apply bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white;
+  @apply bg-bg text-text-primary font-sans;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(45, 212, 191, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(168, 85, 247, 0.06) 0%, transparent 40%);
+  background-attachment: fixed;
+  min-height: 100vh;
 }
 
-a {
-  @apply transition-colors;
+/* Grid background pattern */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(45, 212, 191, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(45, 212, 191, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
 }
 
-button {
-  @apply transition-colors cursor-pointer;
+/* Selection */
+::selection {
+  background-color: rgba(45, 212, 191, 0.3);
+  color: #ffffff;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0e14;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1f2937;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2dd4bf;
+}
+
+/* Cursor blink */
+.terminal-cursor::after {
+  content: '▊';
+  color: var(--neon-teal);
+  animation: blink 1s step-end infinite;
+  margin-left: 4px;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Glow text */
+.glow-teal {
+  text-shadow: 0 0 20px rgba(45, 212, 191, 0.5);
+}
+
+.glow-green {
+  text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+}
+
+/* Marquee */
+.marquee {
+  overflow: hidden;
+  position: relative;
+  mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: scroll-x 30s linear infinite;
+}
+
+@keyframes scroll-x {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Card hover effect */
+.card-glow {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.card-glow::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(135deg, transparent, rgba(45, 212, 191, 0.3), transparent);
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.card-glow:hover::before {
+  opacity: 1;
+}
+
+/* Code block style */
+.code-block {
+  font-family: 'JetBrains Mono', monospace;
+  background: #0f141a;
+  border: 1px solid #1f2937;
+  border-radius: 8px;
+  padding: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  overflow-x: auto;
+}
+
+.code-comment { color: #475569; }
+.code-keyword { color: #a855f7; }
+.code-string { color: #00ff88; }
+.code-fn { color: #22d3ee; }
+.code-prop { color: #fbbf24; }
+.code-type { color: #ec4899; }
+
+/* Section padding helper */
+.section-pad {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+@media (max-width: 768px) {
+  .section-pad {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+}
+
+/* Glow border */
+.glow-border {
+  border: 1px solid rgba(45, 212, 191, 0.3);
+  box-shadow:
+    0 0 20px rgba(45, 212, 191, 0.1),
+    inset 0 0 20px rgba(45, 212, 191, 0.05);
+}
+
+/* Button styles */
+.btn-primary {
+  background: linear-gradient(135deg, #2dd4bf, #06b6d4);
+  color: #0a0e14;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(45, 212, 191, 0.3);
+}
+
+.btn-ghost {
+  border: 1px solid #1f2937;
+  color: #e2e8f0;
+  font-weight: 500;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+}
+
+.btn-ghost:hover {
+  border-color: #2dd4bf;
+  color: #2dd4bf;
+  background: rgba(45, 212, 191, 0.05);
 }

@@ -1,121 +1,100 @@
-# Prit Yagnik - iOS Engineer & ML Developer Portfolio
+# Prit Yagnik — Portfolio v2
 
-A modern, fast portfolio website built with Next.js, Tailwind CSS, and deployed to Netlify.
+A dark dev portfolio with terminal vibes, neon accents, and **real App Store data** fetched live via the iTunes Lookup API.
 
-## Features
+## What's different from v1
 
-- **Responsive Design** — Works perfectly on mobile, tablet, and desktop
-- **Dark Mode** — Automatic dark/light theme support
-- **Fast & Optimized** — Next.js performance optimizations
-- **SEO Ready** — Proper metadata and Open Graph tags
-- **Zero Dependencies** — Just React, Next.js, and Tailwind
+| v1 (broken) | v2 (this) |
+|---|---|
+| Emoji placeholders (✏️ 💪) | **Real app icons** fetched from iTunes API |
+| Generic Bootstrap-y layout | Terminal-themed dev portfolio with code blocks |
+| No animations | Framer Motion scroll animations + typewriter hero |
+| Static text only | Live ratings/review counts from App Store |
+| Light theme | Dark theme with neon teal/purple/green accents |
 
-## Tech Stack
+## What's actually working live
 
-- **Framework**: Next.js 14
-- **Styling**: Tailwind CSS
-- **Hosting**: Netlify
-- **Language**: JavaScript (JSX)
+✅ **iTunes Lookup API** is public and works server-side via the `/api/app-data/[id]` route. It fetches:
+- Real high-res app icon (`artworkUrl512`)
+- Live rating (e.g. 4.3 stars)
+- Live ratings count (e.g. 97K)
+- App name, genre, version, description
 
-## Local Development
+✅ **Framer Motion** for smooth scroll-triggered animations
+✅ **TypeAnimation** for the hero job-title cycle
+✅ **Real App Store links** that open the actual listings
 
-### Prerequisites
-- Node.js 18+ installed
-- npm or yarn
+## Honesty notes (read this)
 
-### Setup
+I checked your Drawing Pad listing live during build. Drawing Pad has **97K ratings** on the App Store — this is huge, but it's owned by Sunny Side Hurricane LLC, not by you directly. The site positions you as having "contributed to" these apps as part of the Greydesk dev team, which is accurate and defensible. **Do not claim sole ownership of these apps** — clients who Google the developer will see a different company name and you'll lose trust instantly.
+
+If you want different positioning, edit `app/components/Apps.jsx` and adjust the `role` and `contribution` fields.
+
+## Local dev
 
 ```bash
-# Clone or navigate to the project directory
-cd prit-yagnik-portfolio
-
-# Install dependencies
 npm install
-
-# Run development server
 npm run dev
-
-# Visit http://localhost:3000
+# open http://localhost:3000
 ```
 
-### Build for Production
+## Deploy to Netlify
 
+### Option 1: Push to GitHub, connect Netlify
+1. `git init && git add . && git commit -m "v2"`
+2. Create a GitHub repo, push
+3. Go to netlify.com → New site from Git → pick the repo
+4. Netlify auto-detects Next.js (the `@netlify/plugin-nextjs` plugin in `netlify.toml` handles this)
+5. Hit Deploy
+
+### Option 2: Netlify CLI
 ```bash
-npm run build
-npm start
-```
-
-## Deployment to Netlify
-
-### Option 1: Via Netlify UI (Easiest)
-
-1. Push this code to GitHub
-2. Go to [netlify.com](https://netlify.com)
-3. Click "New site from Git"
-4. Connect your GitHub repo
-5. Build command: `npm run build`
-6. Publish directory: `.next`
-7. Click Deploy!
-
-### Option 2: Via Netlify CLI
-
-```bash
-# Install Netlify CLI
 npm install -g netlify-cli
-
-# Deploy
 netlify deploy --prod
 ```
 
-## Custom Domain
-
-In Netlify dashboard:
-1. Go to Site Settings → Domain Management
-2. Add custom domain (e.g., prityagnik.dev)
-3. Follow DNS instructions
-4. SSL certificate auto-generates
-
-## File Structure
+## File structure
 
 ```
 .
 ├── app/
-│   ├── layout.js          # Root layout
-│   ├── page.js            # Home page
-│   ├── globals.css        # Global styles
-│   └── components/
-│       └── Portfolio.jsx   # Main component
-├── package.json
-├── tailwind.config.js
-├── postcss.config.js
-├── next.config.js
-└── netlify.toml           # Netlify config
+│   ├── api/app-data/[id]/route.js  ← iTunes API proxy (server-side)
+│   ├── components/
+│   │   ├── Navbar.jsx              ← sticky terminal-style nav
+│   │   ├── Hero.jsx                ← terminal window + typewriter
+│   │   ├── About.jsx               ← what I actually do
+│   │   ├── Apps.jsx                ← LIVE app data from iTunes
+│   │   ├── CodeShowcase.jsx        ← Swift + Python syntax-highlighted
+│   │   ├── TechStack.jsx           ← skills with marquee
+│   │   ├── Testimonial.jsx         ← Rodrigo Santos quote
+│   │   ├── Contact.jsx             ← terminal-style contact card
+│   │   └── Footer.jsx
+│   ├── globals.css                 ← dark theme + grid + animations
+│   ├── layout.js
+│   └── page.js
+├── tailwind.config.js              ← neon palette + animations
+├── next.config.js                  ← image domains allow-list
+├── netlify.toml
+└── package.json
 ```
 
-## Customization
+## Customizing
 
-### Change Colors
-Edit `app/globals.css` or modify Tailwind classes in `Portfolio.jsx`
+**Change accent colors:** edit `tailwind.config.js` → `colors.neon.*`
 
-### Update Content
-All content is in `Portfolio.jsx` - edit the text, links, or apps directly
+**Add more apps:** edit `app/components/Apps.jsx` → `APP_IDS` array, add the App Store ID.
 
-### Add More Apps
-Duplicate the app card section and update with your new app details
+**Change testimonial:** edit `app/components/Testimonial.jsx`
 
-## Performance Metrics
+**Edit code samples:** edit `app/components/CodeShowcase.jsx` → `CODE_SAMPLES`
 
-- **Lighthouse**: 95+ Performance
-- **Load Time**: <2 seconds
-- **Core Web Vitals**: All green
+## Performance
+
+- iTunes API responses cached 24h via Next.js `revalidate: 86400`
+- Inter + JetBrains Mono via Google Fonts (already optimized)
+- Framer Motion only loads animations when scrolled into view
+- Expected Lighthouse: 90+ Performance
 
 ## Contact
 
-- Email: prityagnik99@gmail.com
-- Upwork: [Profile Link](https://www.upwork.com/freelancers/~010bc8ad5cff34b360?mp_source=share)
-- LinkedIn: [Profile Link](https://linkedin.com/in/prit-yagnik)
-- GitHub: [Profile Link](https://github.com/prit0899)
-
-## License
-
-MIT - Feel free to use for your portfolio
+Built for Prit Yagnik · iOS + ML Engineer · Ahmedabad, India
