@@ -2,7 +2,6 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Apps from './components/Apps';
 import TechStack from './components/TechStack';
-import CodeShowcase from './components/CodeShowcase';
 import Testimonial from './components/Testimonial';
 import Contact from './components/Contact';
 import Navbar from './components/Navbar';
@@ -17,7 +16,6 @@ export default function Home() {
         <Hero />
         <About />
         <Apps />
-        <CodeShowcase />
         <TechStack />
         <Testimonial />
         <Contact />
