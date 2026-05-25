@@ -9,7 +9,7 @@ const STACK_CATEGORIES = [
     items: ['Swift', 'SwiftUI', 'UIKit', 'Core Data', 'Core Location', 'Core Graphics', 'HealthKit', 'Combine', 'Async/Await'],
   },
   {
-    title: 'On-Device ML',
+    title: 'ML',
     color: 'neon-purple',
     items: ['CoreML', 'CreateML', 'Vision', 'NaturalLanguage', 'Image Classification', 'Style Transfer', 'Text Recognition'],
   },
