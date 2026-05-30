@@ -33,16 +33,21 @@ export default function About() {
               /* iOS Engineering — 6 years deep */
             </div>
             <p className="text-text-secondary mb-4 leading-relaxed">
-              Most iOS devs can build an app. Few can build one that
-              ships crash-free at scale. I've spent 6 years at{' '}
+              Senior iOS Engineer at{' '}
               <span className="text-neon-teal font-mono">@greydesk</span>{' '}
-              doing exactly that — shipping apps that handle 2K+ daily
-              active users with 98% crash-free sessions.
+              since Feb 2020. Architected and shipped 20+ App Store apps in{' '}
+              <span className="text-neon-teal font-mono">Swift 5+</span>,{' '}
+              <span className="text-neon-teal font-mono">SwiftUI</span>, and{' '}
+              <span className="text-neon-teal font-mono">UIKit</span> — pixel-
+              perfect, accessible UIs across every screen size and Dynamic
+              Type setting.
             </p>
             <p className="text-text-secondary leading-relaxed">
-              Swift, SwiftUI, UIKit, Core Data, Core Location, in-app
-              purchases, push notifications, analytics, App Store
-              compliance — production stuff, not tutorial stuff.
+              MVVM, Clean Architecture, SOLID. Swift Concurrency
+              (async/await, actors), Combine, Core Data with batch fetching
+              and background contexts (30% faster reads). XCTest, SonarQube,
+              CI/CD with TestFlight & App Store Connect — production stuff,
+              not tutorial stuff.
             </p>
           </motion.div>
 
@@ -54,27 +59,31 @@ export default function About() {
             className="bg-bg-card border border-border rounded-lg p-8 card-glow"
           >
             <div className="font-mono text-xs text-neon-amber mb-4">
-              /* On-device ML — where iOS meets AI */
+              /* Monetization & Analytics — apps that make money */
             </div>
             <p className="text-text-secondary mb-4 leading-relaxed">
-              This is the rare combo. I train models with{' '}
-              <span className="text-neon-teal font-mono">CreateML</span>{' '}
-              and ship them to iPhones using{' '}
-              <span className="text-neon-teal font-mono">CoreML</span> —
-              image classification, style transfer, text recognition. All
-              running locally, no server round-trip.
+              Multi-tier subscription engines integrating{' '}
+              <span className="text-neon-teal font-mono">StoreKit</span>,{' '}
+              <span className="text-neon-teal font-mono">RevenueCat</span>, and{' '}
+              <span className="text-neon-teal font-mono">Adapty</span> — with
+              transaction validation and churn tracking. Remote-controlled
+              dynamic paywalls via{' '}
+              <span className="text-neon-teal font-mono">Superwall</span> for
+              instant A/B tests without an App Store review cycle.
             </p>
             <p className="text-text-secondary leading-relaxed">
-              Backing that up with{' '}
-              <span className="text-neon-teal font-mono">FastAPI</span>{' '}
-              backends and{' '}
-              <span className="text-neon-teal font-mono">scikit-learn</span>{' '}
-              when the model needs to live in the cloud.
+              Funnel analytics with{' '}
+              <span className="text-neon-teal font-mono">Mixpanel</span> and{' '}
+              <span className="text-neon-teal font-mono">Firebase</span>,
+              backed by internal{' '}
+              <span className="text-neon-teal font-mono">Python/FastAPI</span>{' '}
+              modules monitoring webhooks and flagging high-churn localized
+              bugs.
             </p>
           </motion.div>
         </div>
 
-        {/* The "rare combo" callout */}
+        {/* Positioning callout */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -88,10 +97,13 @@ export default function About() {
               {'// why this matters'}
             </div>
             <p className="text-lg sm:text-xl text-text-primary leading-relaxed">
-              Most iOS devs stop at the app. Most ML engineers can't ship to
-              iOS. <span className="text-neon-teal glow-teal font-semibold">
-              I do both</span> — which means I can architect the whole
-              pipeline, from training to inference to user-facing app.
+              Most iOS engineers ship apps.{' '}
+              <span className="text-neon-teal glow-teal font-semibold">
+                I ship apps that make money
+              </span>{' '}
+              — subscription engines, dynamic paywall A/B testing, and funnel
+              analytics so marketing teams can iterate without waiting on App
+              Store review.
             </p>
           </div>
         </motion.div>

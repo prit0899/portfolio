@@ -6,30 +6,58 @@ import { motion } from 'framer-motion';
 const APP_IDS = [
   {
     id: '1169413062',
-    title: 'Drawing Pad',
+    title: 'Drawing Desk',
     role: 'iOS Developer',
-    contribution: 'Contributed to multi-mode drawing engine, AI sketch colorization with CoreML, and Apple Pencil integration. Part of the Greydesk dev team.',
-    techStack: ['Swift', 'SwiftUI', 'CoreML', 'CreateML', 'Core Graphics', 'UIBezierPath'],
+    headline: '7,800+ ratings · 2,000+ daily active users',
+    contributions: [
+      'Architected an AI sketch colorization feature using native Core Graphics pipelines — transforms B&W sketches into finished digital artwork without third-party ML libraries.',
+      'Engineered a Pro Drawing engine with freehand tools, layering system, and high-resolution canvas using Core Graphics, Core Animation, and UIBezierPath — sub-frame stroke latency.',
+      'Integrated Apple Pencil protocols with pressure tracking, tilt detection, and precise hit-testing — advanced layer workflows comparable to Sketchbook-style apps.',
+      'Built a Learn to Draw module with step-by-step guided tracing and real-time visual feedback across progressive difficulty levels.',
+    ],
+    techStack: ['Swift', 'SwiftUI', 'Core Graphics', 'Core Animation', 'PencilKit', 'UIBezierPath', 'CoreML'],
     accentColor: 'neon-purple',
     fallbackEmoji: '🎨',
+  },
+  {
+    id: '6450295655',
+    title: 'Self Employed — Tax & Expenses',
+    role: 'iOS Developer',
+    headline: 'App Store Release · finance & productivity',
+    contributions: [
+      'Built core modules — Core Data architecture, JWT-authenticated REST API, Core Location mileage tracking, Firebase Analytics, StoreKit IAP, and income/expense dashboards with CSV export.',
+      'Designed a background mileage-tracking algorithm using Core Location to catalog automotive distance logs for personal and business financial audits.',
+      'Engineered a taxation module computing US-standard income tax with profile-based deductions; secured sensitive financial data via Keychain cryptographic storage.',
+      'Built data visualization dashboards (pie charts, expense trends, monthly/yearly graphs) with seamless CSV/Excel export pipelines.',
+    ],
+    techStack: ['Swift', 'Core Data', 'Core Location', 'StoreKit', 'Keychain', 'Firebase', 'REST + JWT'],
+    accentColor: 'neon-green',
+    fallbackEmoji: '💼',
   },
   {
     id: '1629649127',
     title: 'Daily Workout',
     role: 'iOS Developer',
-    contribution: 'Built fitness tracking flows, exercise routine management, progress analytics with HealthKit integration.',
-    techStack: ['Swift', 'SwiftUI', 'HealthKit', 'Core Data', 'Mixpanel'],
-    accentColor: 'neon-green',
+    headline: 'App Store · fitness & wellness',
+    contributions: [
+      'Built fitness tracking flows for exercise routines, rest timers, and progress analytics — backed by HealthKit integration for workout and activity sync.',
+      'Implemented Core Data persistence for offline-first workout history, personal records, and routine templates across device tiers.',
+      'Instrumented Mixpanel funnels for onboarding, workout completion, and retention — surfacing drop-off points back to the marketing team.',
+      'Contributed to subscription paywalls and routine library UI alongside the Greydesk team.',
+    ],
+    techStack: ['Swift', 'SwiftUI', 'HealthKit', 'Core Data', 'Mixpanel', 'StoreKit'],
+    accentColor: 'neon-amber',
     fallbackEmoji: '💪',
   },
 ];
 
 function AppCard({ appInfo, index }) {
   const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(!!appInfo.id);
   const [error, setError] = useState(false);
 
   useEffect(() => {
+    if (!appInfo.id) return;
     fetch(`/api/app-data/${appInfo.id}`)
       .then((r) => r.json())
       .then((d) => {
@@ -49,28 +77,36 @@ function AppCard({ appInfo, index }) {
   const accentClasses = {
     'neon-purple': 'text-neon-purple border-neon-purple/30',
     'neon-green': 'text-neon-green border-neon-green/30',
+    'neon-amber': 'text-neon-amber border-neon-amber/30',
   };
 
+  const href = appInfo.id
+    ? data?.url || `https://apps.apple.com/in/app/id${appInfo.id}`
+    : null;
+
+  const Wrapper = href ? motion.a : motion.div;
+  const wrapperProps = href
+    ? { href, target: '_blank', rel: 'noopener noreferrer' }
+    : {};
+
   return (
-    <motion.a
-      href={data?.url || `https://apps.apple.com/in/app/id${appInfo.id}`}
-      target="_blank"
-      rel="noopener noreferrer"
+    <Wrapper
+      {...wrapperProps}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
-      whileHover={{ y: -4 }}
-      className="block bg-bg-card border border-border rounded-lg overflow-hidden hover:border-neon-teal/50 transition-all duration-300 group"
+      whileHover={href ? { y: -4 } : undefined}
+      className={`block bg-bg-card border border-border rounded-lg overflow-hidden transition-all duration-300 group ${
+        href ? 'hover:border-neon-teal/50' : ''
+      }`}
     >
       <div className="p-6">
         <div className="flex items-start gap-5 mb-6">
           {/* App Icon */}
-          <div className="flex-shrink-0 w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-bg-elevated border border-border overflow-hidden relative">
-            {loading ? (
-              <div className="w-full h-full flex items-center justify-center text-text-dim text-2xl animate-pulse">
-                {appInfo.fallbackEmoji}
-              </div>
+          <div className="flex-shrink-0 w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-bg-elevated border border-border overflow-hidden relative flex items-center justify-center">
+            {appInfo.id && loading ? (
+              <div className="text-2xl animate-pulse">{appInfo.fallbackEmoji}</div>
             ) : data?.icon ? (
               <img
                 src={data.icon}
@@ -81,9 +117,7 @@ function AppCard({ appInfo, index }) {
                 }}
               />
             ) : (
-              <div className="w-full h-full flex items-center justify-center text-3xl">
-                {appInfo.fallbackEmoji}
-              </div>
+              <div className="text-3xl">{appInfo.fallbackEmoji}</div>
             )}
           </div>
 
@@ -99,8 +133,8 @@ function AppCard({ appInfo, index }) {
               {data?.name || appInfo.title}
             </h3>
 
-            {/* Real ratings from App Store */}
-            {data && !error && (
+            {/* Live App Store rating, if available; otherwise show resume headline */}
+            {data && !error ? (
               <div className="flex items-center gap-3 text-sm">
                 <div className="flex items-center gap-1">
                   <span className="text-neon-amber">★</span>
@@ -117,13 +151,23 @@ function AppCard({ appInfo, index }) {
                   </div>
                 )}
               </div>
+            ) : (
+              <div className="text-text-dim text-sm font-mono">
+                {appInfo.headline}
+              </div>
             )}
           </div>
         </div>
 
-        <p className="text-text-secondary text-sm leading-relaxed mb-5">
-          {appInfo.contribution}
-        </p>
+        {/* Resume-aligned bullet list */}
+        <ul className="space-y-2.5 mb-5">
+          {appInfo.contributions.map((c, i) => (
+            <li key={i} className="flex gap-2.5 text-text-secondary text-sm leading-relaxed">
+              <span className="text-neon-teal font-mono mt-0.5 flex-shrink-0">›</span>
+              <span>{c}</span>
+            </li>
+          ))}
+        </ul>
 
         {/* Tech stack tags */}
         <div className="flex flex-wrap gap-2 mb-4">
@@ -141,12 +185,14 @@ function AppCard({ appInfo, index }) {
           <span className="font-mono text-xs text-text-dim">
             {data?.genre || 'Loading...'}
           </span>
-          <span className="text-neon-teal text-sm font-medium group-hover:translate-x-1 transition flex items-center gap-1">
-            View on App Store <span>→</span>
-          </span>
+          {href && (
+            <span className="text-neon-teal text-sm font-medium group-hover:translate-x-1 transition flex items-center gap-1">
+              View on App Store <span>→</span>
+            </span>
+          )}
         </div>
       </div>
-    </motion.a>
+    </Wrapper>
   );
 }
 
@@ -162,20 +208,21 @@ export default function Apps() {
           className="mb-12"
         >
           <div className="font-mono text-sm text-neon-teal mb-2">
-            $ ls -la apps/
+            $ ls -la projects/
           </div>
           <h2 className="text-3xl sm:text-5xl font-bold text-text-primary">
-            Shipped to the App Store<span className="text-neon-teal">.</span>
+            Key projects<span className="text-neon-teal">.</span>
           </h2>
           <p className="text-text-secondary mt-3 max-w-2xl">
-            Live apps I've contributed to as part of the Greydesk dev team.
-            Click any card to see the actual App Store listing.
+            Featured apps from a 20+ release portfolio shipped at{' '}
+            <span className="text-neon-teal font-mono">@greydesk</span>{' '}
+            — click any card to see the live App Store listing.
           </p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-6">
           {APP_IDS.map((app, i) => (
-            <AppCard key={app.id} appInfo={app} index={i} />
+            <AppCard key={app.id || app.title} appInfo={app} index={i} />
           ))}
         </div>
 

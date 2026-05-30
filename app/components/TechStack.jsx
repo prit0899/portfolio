@@ -4,31 +4,85 @@ import { motion } from 'framer-motion';
 
 const STACK_CATEGORIES = [
   {
-    title: 'iOS Native',
+    title: 'Languages',
+    slug: 'languages',
     color: 'neon-teal',
-    items: ['Swift', 'SwiftUI', 'UIKit', 'Core Data', 'Core Location', 'Core Graphics', 'HealthKit', 'Combine', 'Async/Await'],
+    items: ['Swift 5+', 'Objective-C', 'Python'],
+  },
+  {
+    title: 'UI & Apple Frameworks',
+    slug: 'ui',
+    color: 'neon-purple',
+    items: ['SwiftUI', 'UIKit', 'Programmatic AutoLayout', 'Core Graphics', 'Core Animation', 'Core Location', 'PencilKit', 'Accessibility'],
+  },
+  {
+    title: 'Architecture',
+    slug: 'architecture',
+    color: 'neon-amber',
+    items: ['MVVM', 'Clean Architecture', 'SOLID', 'VIPER', 'MVC', 'Protocol-Oriented Programming'],
+  },
+  {
+    title: 'Concurrency',
+    slug: 'concurrency',
+    color: 'neon-green',
+    items: ['async/await', 'Actors', 'Structured Concurrency', 'Combine', 'GCD'],
+  },
+  {
+    title: 'Monetization',
+    slug: 'monetization',
+    color: 'neon-teal',
+    items: ['StoreKit (IAP)', 'RevenueCat', 'Adapty', 'Superwall (Dynamic Paywall A/B Testing)'],
+  },
+  {
+    title: 'Analytics',
+    slug: 'analytics',
+    color: 'neon-purple',
+    items: ['Mixpanel', 'Firebase Analytics', 'User Funnel Optimization'],
   },
   {
     title: 'ML',
-    color: 'neon-purple',
+    slug: 'ml',
+    color: 'neon-green',
     items: ['CoreML', 'CreateML', 'Vision', 'NaturalLanguage', 'Image Classification', 'Style Transfer', 'Text Recognition'],
   },
   {
-    title: 'Backend & ML',
-    color: 'neon-green',
-    items: ['Python', 'FastAPI', 'scikit-learn', 'pandas', 'NumPy', 'REST APIs', 'PostgreSQL', 'Docker'],
+    title: 'Security & Networking',
+    slug: 'security',
+    color: 'neon-amber',
+    items: ['REST APIs', 'URLSession', 'OAuth 2.0', 'JWT', 'SSL Pinning', 'Keychain', 'Codable'],
   },
   {
-    title: 'Tools & Services',
+    title: 'Testing & Quality',
+    slug: 'testing',
+    color: 'neon-green',
+    items: ['XCTest', 'SonarQube', 'Mocking', 'Unit Testing', 'Static Analysis'],
+  },
+  {
+    title: 'Data & Storage',
+    slug: 'data',
+    color: 'neon-teal',
+    items: ['Core Data', 'SQLite', 'Realm', 'Firebase', 'Keychain'],
+  },
+  {
+    title: 'Backend',
+    slug: 'backend',
+    color: 'neon-purple',
+    items: ['Python', 'FastAPI', 'Webhook Automation'],
+  },
+  {
+    title: 'CI/CD & Tools',
+    slug: 'cicd',
     color: 'neon-amber',
-    items: ['Xcode', 'Git', 'Firebase', 'Mixpanel', 'RevenueCat', 'Adapty', 'App Store Connect', 'TestFlight'],
+    items: ['Xcode', 'Git', 'CI/CD', 'CocoaPods', 'TestFlight', 'App Store Connect', 'JIRA', 'Agile/Scrum'],
   },
 ];
 
 const MARQUEE_ITEMS = [
-  'Swift', 'CoreML', 'SwiftUI', 'Python', 'FastAPI', 'CreateML',
-  'UIKit', 'Vision', 'scikit-learn', 'Combine', 'pandas', 'Core Data',
-  'HealthKit', 'NumPy', 'Mixpanel', 'RevenueCat',
+  'Swift 5+', 'SwiftUI', 'UIKit', 'MVVM', 'Clean Architecture', 'SOLID',
+  'async/await', 'Actors', 'Combine', 'StoreKit', 'RevenueCat', 'Adapty',
+  'Superwall', 'Mixpanel', 'Firebase', 'OAuth 2.0', 'JWT', 'SSL Pinning',
+  'Core Data', 'Core Location', 'CoreML', 'CreateML', 'Vision',
+  'XCTest', 'SonarQube', 'Xcode', 'Python', 'FastAPI',
 ];
 
 export default function TechStack() {
@@ -65,18 +119,18 @@ export default function TechStack() {
           </div>
         </div>
 
-        <div className="grid sm:grid-cols-2 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {STACK_CATEGORIES.map((category, i) => (
             <motion.div
-              key={i}
+              key={category.slug}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
+              transition={{ duration: 0.5, delay: (i % 3) * 0.08 }}
               className="bg-bg-card border border-border rounded-lg p-6 hover:border-neon-teal/30 transition"
             >
               <div className={`font-mono text-xs text-${category.color} mb-3`}>
-                "{category.title.toLowerCase().replace(' ', '-')}"
+                "{category.slug}"
               </div>
               <h3 className="text-xl font-bold text-text-primary mb-4">
                 {category.title}

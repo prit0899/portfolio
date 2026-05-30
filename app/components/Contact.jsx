@@ -45,8 +45,9 @@ export default function Contact() {
 
             <p className="text-text-secondary mb-8 text-base sm:text-lg font-sans leading-relaxed">
               <span className="text-neon-teal">{'// '}</span>
-              Need an iOS app? An ML feature shipped? A bug crushed?
-              I respond within 24 hours, every time.
+              Need a new iOS app? A paywall A/B test wired up? A subscription
+              engine that actually validates? A funnel instrumented? A bug
+              crushed? I respond within 24 hours, every time.
             </p>
 
             {/* Status indicator */}
@@ -98,21 +99,6 @@ export default function Contact() {
                 </div>
                 <div className="text-neon-teal text-sm group-hover:translate-x-1 transition inline-flex items-center gap-1">
                   Connect →
-                </div>
-              </a>
-
-              <a
-                href="https://type.link/ppy9911"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-bg-elevated border border-border rounded-lg p-5 hover:border-neon-teal/50 hover:bg-bg-card transition group"
-              >
-                <div className="text-xs text-text-dim mb-1">via calendar</div>
-                <div className="text-text-primary font-bold mb-1">
-                  Schedule a call
-                </div>
-                <div className="text-neon-teal text-sm group-hover:translate-x-1 transition inline-flex items-center gap-1">
-                  Book a slot →
                 </div>
               </a>
             </div>

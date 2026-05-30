@@ -30,10 +30,11 @@ export default function Navbar() {
           <span className="text-neon-teal">:~$</span>
         </div>
 
-        <div className="hidden md:flex gap-8 font-mono text-sm text-text-secondary">
+        <div className="hidden md:flex gap-6 lg:gap-8 font-mono text-sm text-text-secondary">
           <a href="#about" className="hover:text-neon-teal transition">./about</a>
-          <a href="#apps" className="hover:text-neon-teal transition">./apps</a>
+          <a href="#apps" className="hover:text-neon-teal transition">./projects</a>
           <a href="#stack" className="hover:text-neon-teal transition">./stack</a>
+          <a href="#education" className="hover:text-neon-teal transition">./education</a>
           <a href="#contact" className="hover:text-neon-teal transition">./contact</a>
         </div>
 

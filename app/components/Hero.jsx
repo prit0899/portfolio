@@ -54,15 +54,15 @@ export default function Hero() {
             >
               <TypeAnimation
                 sequence={[
-                  '> iOS Engineer',
+                  '> Senior iOS Engineer',
                   2000,
-                  '> CoreML Developer',
+                  '> Swift & SwiftUI · 6 years',
                   2000,
-                  '> Swift Specialist',
+                  '> MVVM · Clean Architecture · SOLID',
                   2000,
-                  '> ML Engineer',
+                  '> StoreKit · RevenueCat · Superwall',
                   2000,
-                  '> Full-Stack iOS + Python',
+                  '> Mixpanel · Firebase Analytics',
                   2000,
                 ]}
                 wrapper="span"
@@ -79,9 +79,11 @@ export default function Hero() {
               className="text-text-secondary text-base sm:text-lg max-w-2xl mb-10 leading-relaxed font-sans"
             >
               <span className="text-neon-teal">{'// '}</span>
-              6 years shipping production iOS apps. Now building on-device ML
-              with CreateML & CoreML, plus Python backends with FastAPI.
-              Based in Ahmedabad, available worldwide.
+              Senior iOS Engineer with 6 years building secure, scalable,
+              high-performance apps in Swift 5+, SwiftUI, and UIKit. Specialist
+              in mobile monetization (StoreKit, RevenueCat, Adapty), dynamic
+              paywall A/B testing (Superwall), and funnel analytics (Mixpanel,
+              Firebase). Based in Ahmedabad, available worldwide.
             </motion.p>
 
             {/* Stats Grid */}
@@ -95,7 +97,7 @@ export default function Hero() {
                 { value: '6+', label: 'years iOS' },
                 { value: '20+', label: 'apps shipped' },
                 { value: '98%', label: 'crash-free' },
-                { value: '2K+', label: 'DAU' },
+                { value: '100+', label: 'bugs resolved' },
               ].map((stat, i) => (
                 <div
                   key={i}
